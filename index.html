@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>خاتوون زەینۆ ✨ Tangled Kingdom</title>
+  <style>
+    :root {
+      --bg-color: #1a0826;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --primary: #8a2be2;
+      --gold: #ffd700;
+      --text: #3c1361;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1f083a, #4a154b, #2b1055);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 25px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
+      text-align: center;
+      max-width: 430px;
+      width: 100%;
+      position: relative;
+    }
+
+    .slider-container {
+      width: 100%;
+      height: 230px;
+      overflow-x: auto;
+      display: flex;
+      gap: 10px;
+      scroll-snap-type: x mandatory;
+      border-radius: 15px;
+      border: 2px solid var(--gold);
+      margin-bottom: 15px;
+      background: #10041c;
+    }
+
+    .slider-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #6a1b9a;
+      font-size: 14px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 19px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+      position: relative;
+      min-height: 70px;
+    }
+
+    button, .btn {
+      background: linear-gradient(45deg, #8a2be2, #da70d6);
+      color: white;
+      border: 2px solid var(--gold);
+      padding: 12px 26px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #da70d6, #8a2be2);
+    }
+
+    #btnNo {
+      position: relative;
+      background: #7f8c8d;
+      border-color: #bdc3c7;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 10px;
+      box-sizing: border-box;
+      font-family: inherit;
+      resize: none;
+      margin-bottom: 15px;
+      background: #fff8e7;
+    }
+
+    .rating {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    .rating button {
+      padding: 0;
+      border-radius: 50%;
+      font-size: 14px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .grid-photos {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .grid-photos img {
+      width: 48%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    
+    <!-- گەلەری وێنەکان -->
+    <div class="slider-container">
+      <img src="photo_1_2026-09-07_20-03-29.jpg" alt="Zayno 1">
+      <img src="photo_2_2026-09-07_20-03-29.jpg" alt="Zayno 2">
+      <img src="photo_3_2026-09-07_20-03-29.jpg" alt="Zayno 3">
+    </div>
+    
+    <div class="quote">
+      "You were my new dream..." — Flynn Rider ☀️💜<br>
+      "And you were mine." — Rapunzel 🌸👑
+    </div>
+
+<!-- هەنگاوی ١: زمان -->
+    <div id="step-lang">
+      <h2>سڵاو خاتوون زەینۆ (شازادەی شانشینی راپۆنزڵ) ✨👑<br><br>ئایا بە چ زمانێک لەگەڵت بین؟ / بأي لغة نتحدث معك؟</h2>
+      <div class="btn-container">
+        <button onclick="selectLang('kur')">کوردی</button>
+        <button onclick="selectLang('arb')">عەرەبی</button>
+      </div>
+    </div>
+
+    <!-- هەنگاوی ٢: لێخۆشبوون -->
+    <div id="step-forgive" class="hidden">
+      <h2 id="forgive-text"></h2>
+      <div class="btn-container" id="forgive-btns">
+        <button id="btnYes" onclick="forgiven()">بەڵێ 🌸</button>
+        <button id="btnNo" onmouseover="moveNo()" onclick="moveNo()">نەخێر 🍳</button>
+      </div>
+    </div>
+
+    <!-- هەنگاوی ٣: پەیام -->
+    <div id="step-message" class="hidden">
+      <h2 id="msg-text"></h2>
+      <form id="msgForm" onsubmit="submitMessage(event)">
+        <textarea id="userMsg" required placeholder="پەیامەکەت بنووسە..."></textarea>
+        <button type="submit" id="sendBtn">ناردن 💌</button>
+      </form>
+    </div>
+
+    <!-- هەنگاوی ٤: دیاری و ڕەیتینگ -->
+    <div id="step-rating" class="hidden">
+      <div class="grid-photos">
+        <img src="photo_5_2026-09-07_20-03-29.jpg" alt="Zayno 5">
+        <img src="photo_1_2026-09-07_20-03-29.jpg" alt="Zayno 1">
+      </div>
+      <h2 id="gift-text"></h2>
+      <div style="font-size: 40px; margin: 10px 0;">🎁💖✨</div>
+      <div class="rating" id="rating-btns"></div>
+    </div>
+
+    <!-- هەنگاوی ٥: کۆتایی -->
+    <div id="step-thanks" class="hidden">
+      <img src="photo_2_2026-09-07_20-03-29.jpg" style="width:100%; border-radius:12px; border:2px solid var(--gold); margin-bottom:10px;">
+      <h2 id="thanks-text"></h2>
+      <div style="font-size: 35px; margin-top: 10px;">☀️🌸🍳🦎💜</div>
+    </div>
+
+  </div>
+
+  <script>
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrpgajor";
+
+    let currentLang = 'kur';
+    let userMessageText = "";
+
+    const translations = {
+      kur: {
+        forgive: "ئایا لە پاپای خۆش دەبیت لەبەر هەڵەکەی؟ ❤️👑",
+        yes: "بەڵێ",
+        no: "نەخێر",
+        msgPrompt: "تکایە پەیامێکی پڕ لە ڕووناکی بۆ بنووسە 💌🕊️",
+        send: "ناردن 🚀",
+        gift: "دیاریەکی بچوک لە پاپایەوە بۆ جوانترین کچی جیهان و خۆشمەوێی ❤️✨",
+        ratePrompt: "چەند نمرە دەدەیتە پاپا لە ١-١٠ ؟ ⭐️",
+        thanks: "سووپاس شازادە زەینۆ.. تۆ خەونە نوێیەکەی پاپایت! ☀️💜"
+      },
+      arb: {
+        forgive: "هل تسامحين بابا على خطئه؟ ❤️👑",
+        yes: "نعم",
+        no: "لا",
+        msgPrompt: "لطفاً أكتبي له رسالة مليئة بالنور 💌🕊️",
+        send: "إرسال 🚀",
+        gift: "هدية صغيرة من بابا لأجمل فتاة في العالم وأحبكِ ❤️✨",
+        ratePrompt: "كم تقيمين بابا من ١ إلى ١٠؟ ⭐️",
+        thanks: "شكراً لكِ يا أميرة زينو.. أنتِ الحلم الجديد لبابا! ☀️💜"
+      }
+    };
+
+    function selectLang(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      document.getElementById('step-lang').classList.add('hidden');
+      
+      document.getElementById('forgive-text').innerText = t.forgive;
+      document.getElementById('btnYes').innerText = t.yes;
+      document.getElementById('btnNo').innerText = t.no;
+      document.getElementById('step-forgive').classList.remove('hidden');
+    }
+
+    function moveNo() {
+      const btn = document.getElementById('btnNo');
+      btn.style.position = 'absolute';
+      const x = Math.floor(Math.random() * 180) - 90;
+      const y = Math.floor(Math.random() * 120) - 60;
+      btn.style.transform = translate(${x}px, ${y}px);
+    }
+
+    function forgiven() {
+      const t = translations[currentLang];
+      document.getElementById('step-forgive').classList.add('hidden');
+      document.getElementById('msg-text').innerText = t.msgPrompt;
+      document.getElementById('sendBtn').innerText = t.send;
+      document.getElementById('step-message').classList.remove('hidden');
+    }
+
+    async function submitMessage(e) {
+      e.preventDefault();
+      userMessageText = document.getElementById('userMsg').value;
+      showRatingStep();
+    }
+
+function showRatingStep() {
+      const t = translations[currentLang];
+      document.getElementById('step-message').classList.add('hidden');
+      document.getElementById('gift-text').innerText = t.gift;
+      
+      const ratingContainer = document.getElementById('rating-btns');
+      ratingContainer.innerHTML = '';
+      for (let i = 1; i <= 10; i++) {
+        const btn = document.createElement('button');
+        btn.innerText = i;
+        btn.onclick = () => finishProcess(i);
+        ratingContainer.appendChild(btn);
+      }
+      
+      document.getElementById('step-rating').classList.remove('hidden');
+    }
+
+    async function finishProcess(rating) {
+      const t = translations[currentLang];
+      
+      try {
+        await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            Name: "خاتوو زەینۆ",
+            Message: userMessageText,
+            Rating: rating + "/10",
+            Language: currentLang
+          })
+        });
+      } catch (err) {
+        console.log("Error sending email", err);
+      }
+
+      document.getElementById('step-rating').classList.add('hidden');
+      document.getElementById('thanks-text').innerText = t.thanks;
+      document.getElementById('step-thanks').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
